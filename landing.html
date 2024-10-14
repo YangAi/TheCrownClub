@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Crown</title>
+    <style>
+        /* 字体定义 */
+        @font-face {
+            font-family: 'Crown';
+            src: url('./assets/fonts/Philosopher-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* 全局样式 */
+        * {
+            font-family: 'Crown', sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: #BC9A5C;
+        }
+
+        /* 页面布局 */
+        .page {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('./assets/images/landing_desktop.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 通用类 */
+        .hidden {
+            display: none;
+        }
+
+        /* Logo样式 */
+        .logo {
+            width: 472px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            max-width: 200px;
+            padding: 12px 32px;
+            font-size: 32px;
+            background-color: transparent;
+            color: #BC9A5C;
+            border: 1px solid #BC9A5C;
+            cursor: pointer;
+            transition: opacity 1s ease, background-color 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .btn:hover {
+            background-color: #BC9A5C;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .enquiry-btn {
+            margin-bottom: 140px;
+            opacity: 0;
+        }
+
+        /* 表单遮罩层 */
+        .form-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15,6,2,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* 表单容器 */
+        .form-container {
+            position: relative;
+            width: 100%;
+            max-width: 1024px;
+            text-align: center;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        /* 关闭按钮 */
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #BC9A5C;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #BC9A5C;
+            cursor: pointer;
+        }
+
+        /* 表单样式 */
+        .form-logo-mobile, .form-logo {
+            width: 200px;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 16px;
+            background-color: transparent;
+            border: 1px solid #BC9A5C;
+            color: #BC9A5C;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #BC9A5C;
+        }
+
+        input:last-child, textarea:last-child {
+            margin-bottom: 0;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            align-self: flex-start;
+        }
+
+        /* 响应式布局 */
+        .enquiry-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #enquiryForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-content {
+            flex: 1;
+        }
+
+        .form-sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-logo {
+            margin-top: -40px;
+            display: none;
+        }
+
+        /* 媒体查询 */
+        @media (max-width: 768px) {
+            .page {
+                background-image: url('assets/images/landing_mobile.jpg');
+                justify-content: flex-start;
+            }
+            .logo {
+                width: 284px;
+                margin-top: 56px;
+                margin-bottom: 24px;
+            }
+            .btn {
+                font-size: 20px;
+            }
+        
+        }
+
+        @media (min-width: 768px) {
+            #enquiryForm {
+                flex-direction: row;
+            }
+
+            .form-content {
+                flex: 2;
+                padding-right: 20px;
+            }
+
+            .form-sidebar {
+                flex: 1;
+                justify-content: space-between;
+                padding-left: 20px;
+            }
+            .form-logo-mobile {
+                display: none;
+            }
+            .form-logo {
+                display: block;
+            }
+            .submit-btn {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div  id="default" class="page">
+            <img src="./assets/images/logo.png" alt="The Crown Logo" class="logo" id="logo">
+            <button class="btn enquiry-btn" id="enquiryBtn">Enquiry</button>    
+        </div>
+    </div>
+    <div class="form-overlay" id="formOverlay">
+        <div class="form-container">
+            <div class="close-btn" id="closeBtn">&times;</div>
+
+            <form id="enquiryForm">
+                <div class="form-content">
+                    <img src="./assets/images/logo.png" alt="The Crown Logo" class="form-logo-mobile">
+                    <h2 class="form-title">Enquiry Form</h2>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="company" placeholder="Company">
+                    <input type="text" name="position" placeholder="Position">
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                    <textarea name="message" placeholder="Message" rows="4"></textarea>
+                </div>
+                <div class="form-sidebar">
+                    <img src="./assets/images/logo.png" alt="The Crown Logo" class="form-logo">
+                    <button type="submit" class="btn submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.getElementById('logo');
+            const defaultPage = document.getElementById('default');
+            const enquiryBtn = document.getElementById('enquiryBtn');
+            const formOverlay = document.getElementById('formOverlay');
+            const closeBtn = document.getElementById('closeBtn');
+            const enquiryForm = document.getElementById('enquiryForm');
+
+            setTimeout(() => {
+                logo.style.opacity = '1';
+                setTimeout(() => {
+                    enquiryBtn.style.opacity = '1';
+                }, 500);
+            }, 500);
+
+            enquiryBtn.addEventListener('click', () => {
+                defaultPage.classList.add('hidden');
+                formOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    formOverlay.style.opacity = '1';
+                }, 50);
+            });
+
+            closeBtn.addEventListener('click', () => {
+                defaultPage.classList.remove('hidden');
+                formOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    formOverlay.style.display = 'none';
+                }, 500);
+            });
+
+            enquiryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(enquiryForm);
+                let emailBody = '';
+                for (let [key, value] of formData.entries()) {
+                    emailBody += `${key}: ${value}\n`;
+                }
+                window.location.href = `mailto:enquiry@thecrown.com?subject=New Enquiry&body=${encodeURIComponent(emailBody)}`;
+            });
+        });
+    </script>
+</body>
+</html>
