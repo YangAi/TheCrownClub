@@ -16,6 +16,7 @@
         /* 全局样式 */
         * {
             font-family: 'Crown', sans-serif;
+            box-sizing: border-box;
         }
 
         body, html {
@@ -89,6 +90,7 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.5s ease;
+            overflow-y: scroll
         }
 
         /* 表单容器 */
@@ -206,7 +208,13 @@
             .btn {
                 font-size: 20px;
             }
-        
+            input, textarea {
+                padding: 12px;
+            }
+            .form-logo-mobile {
+                margin-top: 48px;
+                margin-bottom: 0;
+            }
         }
 
         @media (min-width: 768px) {
