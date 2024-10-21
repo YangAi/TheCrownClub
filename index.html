@@ -34,10 +34,10 @@
             height: 100vh;
             background-image: url('./assets/images/landing_desktop.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: top;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            /* justify-content: center; */
             align-items: center;
         }
 
@@ -48,8 +48,8 @@
 
         /* Logo样式 */
         .logo {
-            width: 472px;
-            margin-bottom: 40px;
+            width: 280px;
+            margin-top: 80px;
             opacity: 0;
             transition: opacity 1s ease;
         }
@@ -57,8 +57,8 @@
         /* 按钮样式 */
         .btn {
             max-width: 200px;
-            padding: 12px 32px;
-            font-size: 32px;
+            padding: 12px 24px;
+            font-size: 24px;
             background-color: transparent;
             color: #BC9A5C;
             border: 1px solid #BC9A5C;
@@ -87,7 +87,7 @@
             background-color: rgba(15,6,2,0.7);
             display: none;
             justify-content: center;
-            align-items: center;
+            /* align-items: center; */
             opacity: 0;
             transition: opacity 0.5s ease;
             overflow-y: scroll
@@ -165,6 +165,7 @@
 
         .submit-btn {
             align-self: flex-start;
+            margin-bottom: 40px;
         }
 
         /* 响应式布局 */
@@ -195,13 +196,15 @@
         }
 
         /* 媒体查询 */
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .page {
                 background-image: url('assets/images/landing_mobile.jpg');
                 justify-content: flex-start;
+                background-position: center;
             }
             .logo {
                 width: 284px;
+                max-width: 70%;
                 margin-top: 56px;
                 margin-bottom: 24px;
             }
@@ -212,12 +215,29 @@
                 padding: 12px;
             }
             .form-logo-mobile {
-                margin-top: 48px;
+                /* margin-top: 48px; */
                 margin-bottom: 0;
+            }
+            .submit-btn {
+                margin-bottom: 48px;
             }
         }
 
         @media (min-width: 768px) {
+            .enquiry-btn {
+                margin: 0;
+                position: fixed;
+                bottom: 80px;
+                right: 40px;
+                color: #fff;
+                border: 1px solid #fff;
+            }
+            .enquiry-btn:hover {
+                border: 1px solid #BC9A5C;
+
+            .form-overlay {
+                align-items: center;
+            }
             #enquiryForm {
                 flex-direction: row;
             }
