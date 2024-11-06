@@ -54,6 +54,11 @@
             transition: opacity 1s ease;
         }
 
+        #logo-city {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
         /* 按钮样式 */
         .btn {
             max-width: 200px;
@@ -75,6 +80,10 @@
         .enquiry-btn {
             margin-bottom: 140px;
             opacity: 0;
+            border: none;
+        }
+        .enquiry-btn:hover {
+            color: #fff;
         }
 
         /* 表单遮罩层 */
@@ -221,7 +230,13 @@
             .submit-btn {
                 margin-bottom: 48px;
             }
+            .enquiry-btn {
+                margin: 0;
+                position: fixed;
+                bottom: 40px;
+            }
         }
+
 
         @media (min-width: 768px) {
             .enquiry-btn {
@@ -229,11 +244,10 @@
                 position: fixed;
                 bottom: 80px;
                 right: 40px;
-                color: #fff;
-                border: 1px solid #fff;
+                /* color: #fff; */
+                border: none;
             }
-            .enquiry-btn:hover {
-                border: 1px solid #BC9A5C;
+            
 
             .form-overlay {
                 align-items: center;
@@ -268,6 +282,7 @@
     <div class="page">
         <div  id="default" class="page">
             <img src="./assets/images/logo.png" alt="The Crown Logo" class="logo" id="logo">
+            <p id="logo-city" style="font-size: 20px;">Kuwait</p>
             <button class="btn enquiry-btn" id="enquiryBtn">Enquiry</button>    
         </div>
     </div>
@@ -297,6 +312,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logo = document.getElementById('logo');
+            const logoCity = document.getElementById('logo-city')
             const defaultPage = document.getElementById('default');
             const enquiryBtn = document.getElementById('enquiryBtn');
             const formOverlay = document.getElementById('formOverlay');
@@ -305,6 +321,7 @@
 
             setTimeout(() => {
                 logo.style.opacity = '1';
+                logoCity.style.opacity = '1';
                 setTimeout(() => {
                     enquiryBtn.style.opacity = '1';
                 }, 500);
